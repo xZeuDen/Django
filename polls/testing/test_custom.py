@@ -57,7 +57,7 @@ class PollsVoteTests(TestCase):
         response = self.client.post(reverse("polls:vote", args=[question.id]), {})
 
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "You didn&#x27;t select a choice.")
+        self.assertContains(response, "You didn't select a choice.")
 
 
 class PollsTransactionTests(TransactionTestCase):
