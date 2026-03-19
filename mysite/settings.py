@@ -11,13 +11,9 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-# In serverless environments, use writable tmp path for SQLite.
-DB_PATH = os.environ.get('DJANGO_DB_PATH', str(BASE_DIR / 'db.sqlite3'))
 
 
 # Quick-start development settings - unsuitable for production
@@ -27,10 +23,9 @@ DB_PATH = os.environ.get('DJANGO_DB_PATH', str(BASE_DIR / 'db.sqlite3'))
 SECRET_KEY = 'django-insecure-+*5)w%5are2*xooyf1)kju99#r#hvk@1me)#=s03ob9_qv2w&u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-import os
-DEBUG = os.environ.get('DJANGO_DEBUG', 'False').lower() in ('1', 'true', 'yes')
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -82,7 +77,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': DB_PATH,
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
